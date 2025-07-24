@@ -1,0 +1,16 @@
+# macOS Finder
+.DS_Store
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+weather_env/
+
+# GRIB downloads
+**/*.grib2
+
+# Output images and model data
+four_panel/images/
+four_panel/model_data/
