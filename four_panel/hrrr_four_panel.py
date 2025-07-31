@@ -19,9 +19,7 @@ No arguments needed. Outputs drop into `four_panel/images/`.
 """
 
 import os
-import tempfile
 import requests
-from requests.exceptions import HTTPError
 import pygrib
 import numpy as np
 import matplotlib.pyplot as plt
@@ -124,7 +122,6 @@ def main():
         paths = download_hrrr(date_str, run_hour, fh, BASE_DIR)
         if not paths.get('sfc') or not paths.get('prs'):
             continue
-        # Extract fields
         precip, lats, lons = extract_field(paths['sfc'], 'Total Precipitation')
         t700, _, _ = extract_field(paths['prs'], 'Temperature', 'isobaricInhPa', 700)
         rh700, _, _ = extract_field(paths['prs'], 'Relative humidity', 'isobaricInhPa', 700)

@@ -32,7 +32,7 @@ LAT_MIN, LAT_MAX = 36.05, 42.45
 LON_MIN, LON_MAX = -114.55, -108.45
 
 # Custom colormap and precip levels for WeatherBell style
-TEMP_CMAP = plt.get_cmap("RdYlBu_r")
+TEMP_CMAP = plt.get_cmap("bwr")
 PRECIP_LEVELS = [0.1, 0.5, 1, 2.5, 5, 10, 20, 30, 40, 50]  # mm/hr
 PRECIP_COLORS = [
     "#f0f0f0", "#d9d9d9", "#bdbdbd", "#969696",
@@ -154,7 +154,23 @@ def process_grib(grib_paths, plot_dir):
         levels=temp_levels, cmap=TEMP_CMAP,
         linewidths=1.0, transform=ccrs.PlateCarree()
     )
-    ax.clabel(contours, fmt='%d°C', inline=True, fontsize=8)
+    # Add bold blue 0°C isotherm
+    zero_line = ax.contour(
+        lons, lats, temp,
+        levels=[0],
+        colors='blue',
+        linewidths=2.5,
+        transform=ccrs.PlateCarree()
+    )
+    ax.clabel(
+        zero_line,
+        fmt='0°C',
+        fontsize=9,
+        inline=True
+    )
+
+
+    ax.clabel(contours, contours.levels, fmt='%d°C', inline=True, fontsize=12, inline_spacing=0, manual=False)
 
     init_dt = datetime.fromtimestamp(
         init_time.astype('datetime64[s]').astype(int),
