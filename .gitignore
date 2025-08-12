@@ -14,3 +14,4 @@ weather_env/
 # Output images and model data
 four_panel/images/
 four_panel/model_data/
+four_panel/data/
