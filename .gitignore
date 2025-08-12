@@ -15,3 +15,19 @@ weather_env/
 four_panel/images/
 four_panel/model_data/
 four_panel/data/
+# Python cruft
+__pycache__/
+*.pyc
+
+# Virtual env
+weather_env/
+
+# Model/data outputs
+four_panel/data/
+four_panel/images/
+hrrr-explorer/scripts/data/
+hrrr-explorer/scripts/plots/
+
+# GRIB & index files
+*.grib2
+*.idx
